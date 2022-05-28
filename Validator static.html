@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+html, body {
+    font-family: "Market Sans","Helvetica Neue", Helvetica,Arial,Roboto,sans-serif;
+    height: 100%;
+}
+.container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 398px;
+    margin: 0px auto;
+    flex: 1 1 auto;
+}
+.formgroup {
+    width: 380px;
+    height: 30px;
+    margin-top: 30px;
+    border-radius: 7px;
+    border: 1px solid black;
+    background-color: rgb(240, 255, 255, 0.5);
+    padding-left: 14px;
+    font-size: 12px;
+
+}
+.registration__text-1, .registration__text-2 {
+    max-width: 368px;
+    font-size: 11px;
+    align-self: flex-start;
+    margin-top: 7px;
+    margin-bottom: 11px;
+}
+#errormessage1, #errormessage2, #errormessage3, #errormessage4 {     
+    padding-left: 14px;
+    font-size: 12px;
+    color: rgb(207, 58, 58);
+    font-weight: bolder;
+
+
+}
+#successmessage {
+    font-size: 14px;
+    font-weight: bolder;
+    color: rgb(207, 58, 58);
+    
+}
+.create {
+    width: 398px;
+    height: 41px;    
+    border-radius: 22px;
+    background-color: rgb(196, 196, 196);
+    color: white;
+    border: 0px solid rgb(170, 170, 170);
+    font-size: 15px;
+    font-weight: bolder;
+    letter-spacing: 0.05em;
+    margin-top: 7px;
+}
+.create:hover {
+    background-color: rgb(56, 32, 162);
+    color: white;
+    border: 0px solid rgb(56, 32, 162);
+
+}
+.registration__text-2 a {
+    color: rgb(59, 91, 180);
+}
+
+    </style>
+</head>
+
+<body>
+    <main class="wrapper">
+        <h1>Create an account</h1>
+      
+        <form action="#" method="post" class="formWithValidation">
+            <div><input id="businessmail" type="email" placeholder="Business email" class="formgroup" /></div>
+            <div id="errormessage1"></div>
+            <div><input id="businessdomain" type="text" placeholder="Business domain" class="formgroup" minlength="5"/></div>
+            <div id="errormessage2"></div>
+            <div><input id="phone" type="phone" placeholder="Password" class="formgroup" /></div>
+            <div id="errormessage3"></div>
+            <div><input id="date" type="date" placeholder="today date" class="formgroup" /></div>
+            <div id="errormessage4"></div>
+            
+        </form>       
+        <div class="registration__text-1"> If you don't have a legal business, enter country of your residence.</div>
+        <div class="registration__text-2"> By <b>Creating an account</b>, you agree to our <a href="#">User Agreement</a> and acknowledge reading our <a href="#">User Privacy Notice.</a></div>
+        <div id="successmessage"></div>
+        <input name="button" class="create" value="Create account" type="submit" />
+        <a href="#" class="help">Need Help?</a>
+
+    </main>    
+    <script>
+        let form = document.querySelector('.formWithValidation'); 
+        
+        //form.addEventListener('submit', function(event) {
+        //    event.preventDefault()
+        //    console.log('clicked on validate')
+        //})
+
+        class Validator {
+            constructor(email, domain, phone, date, ) {
+                this.email = email;
+                this.domain = domain;
+                this.phone = phone;
+                this.date = date;
+
+            }
+        
+            isEmail(email) {                                                                            
+                let mailFormat = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
+                let valid = mailFormat.test(email);
+                const checkMail = valid ? true : false;
+                return checkMail;
+                }
+         }
+        
+        const valid = new Validator(form.querySelector("#businessmail").value, form.querySelector("#businessdomain").value, form.querySelector("#phone").value, form.querySelector("#date").value, );
+       
+        if(valid.isEmail(form.querySelector("#businessmail"))) {
+            console.log(form.querySelector("#businessmail").value);
+        }
+         
+       
+    </script>
+</body>
+
+</html>
